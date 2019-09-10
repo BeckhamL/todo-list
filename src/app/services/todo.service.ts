@@ -13,18 +13,23 @@ const httpOptions = {
 })
 export class TodoService {
 
-  todosUrl = 'https://jsonplaceholder.typicode.com/todos?_limit=5';
+  todosUrl = 'https://jsonplaceholder.typicode.com/todos';
+  todosLimit = "?_limit=5";
 
   constructor(private http: HttpClient) { }
 
   getTodos(): Observable<Todo[]> {
-   return this.http.get<Todo[]>(this.todosUrl);
+   return this.http.get<Todo[]>(`${this.todosUrl}${this.todosLimit}`);
   }
 
   toggleCompleted(todo: Todo):Observable<any> {
     const url = `${this.todosUrl}/${todo.id}`;
 
     return this.http.put(url, todo, httpOptions);
+  }
 
+  deleteTodo(todo: Todo):Observable<Todo> {
+    const url = `${this.todosUrl}/${todo.id}`;
+    return this.http.delete<Todo>(url, httpOptions);
   }
 }
