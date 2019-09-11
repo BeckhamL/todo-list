@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+}
+
+.form input[type='text'] {
+  flex: 10;
+  padding: 10px;
+}
+
+.form input[type='submit'] {
+  flex:2;
+}
+
+#btn {
+  background: orange;
+  border: none;
+  color: white;
+  font-size: 20px;
+}
